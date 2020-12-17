@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace TesteNotifications.Models.DTOs
 {
@@ -12,6 +13,7 @@ namespace TesteNotifications.Models.DTOs
         public string Sobrenome { get; set; }
 
         [JsonProperty("nascimento")]
+        [DataType(DataType.Date)]
         public DateTime Nascimento { get; set; }
     }
 }

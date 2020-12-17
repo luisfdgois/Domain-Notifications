@@ -3,27 +3,27 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Newtonsoft.Json;
 using System.Net;
 using System.Threading.Tasks;
-using TesteNotifications.Data.Repositories.Notifications;
+using TesteNotifications.Application.Contracts;
 
 namespace TesteNotifications.Configurations.Filters
 {
     public class ResponseFilter : IAsyncResultFilter
     {
-        private readonly RepositoryNotification _repositoryNotification;
+        private readonly ErrorRepository _errorRepository;
 
-        public ResponseFilter(RepositoryNotification repositoryNotification)
+        public ResponseFilter(ErrorRepository errorRepository)
         {
-            _repositoryNotification = repositoryNotification;
+            _errorRepository = errorRepository;
         }
 
         public async Task OnResultExecutionAsync(ResultExecutingContext context, ResultExecutionDelegate next)
         {
-            if (_repositoryNotification.HasNotifications())
+            if (_errorRepository.HasErrors())
             {
                 context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 context.HttpContext.Response.ContentType = "application/json";
 
-                string content = JsonConvert.SerializeObject(_repositoryNotification.GetNotifications());
+                string content = JsonConvert.SerializeObject(_errorRepository.GetErrors());
                 await context.HttpContext.Response.WriteAsync(content);
 
                 return;

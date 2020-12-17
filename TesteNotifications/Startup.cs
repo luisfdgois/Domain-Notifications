@@ -2,15 +2,19 @@ using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using System;
+using TesteNotifications.Application.Concrets;
+using TesteNotifications.Application.Contracts;
 using TesteNotifications.AutoMapper;
 using TesteNotifications.Configurations.Filters;
-using TesteNotifications.Data.Repositories;
-using TesteNotifications.Data.Repositories.Notifications;
-using TesteNotifications.Querys;
+using TesteNotifications.Domain.Contracts;
+using TesteNotifications.Infra.Data;
+using TesteNotifications.Infra.Repositories;
 
 namespace TesteNotifications
 {
@@ -31,14 +35,23 @@ namespace TesteNotifications
                 option.Filters.Add<ResponseFilter>();
             });
 
-            var assembly = AppDomain.CurrentDomain.Load(nameof(TesteNotifications));
-            services.AddMediatR(assembly);
+            services.AddSwaggerGen(s =>
+            {
+                s.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Api Teste Notifications",
+                    Description = "Api (Rest) Teste Notifications tem o intuito de servir como teste para a " +
+                    "implementação do padrão Domain Notifications. Está sendo utilizado recursos da biblioteca MediatR " +
+                    "e do Result Filters para atender ao problema proposto.",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Luis Fernando",
+                        Email = "luisz.dantass@hotmail.com"
+                    }
+                });
+            });
 
-            services.AddAutoMapper(typeof(AutoMapperConfiguration));
-
-            services.AddSingleton<RepositoryAluno, RepositoryAlunoImp>();
-            services.AddScoped<RepositoryNotification, RepositoryNotificationImp>();
-            services.AddScoped<RepositoryQuery, RepositoryQueryImp>();
+            DependiciesConfiguration(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +61,9 @@ namespace TesteNotifications
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(s => s.SwaggerEndpoint("/swagger/v1/swagger.json", ""));
 
             app.UseHttpsRedirection();
 
@@ -59,6 +75,21 @@ namespace TesteNotifications
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private void DependiciesConfiguration(IServiceCollection services)
+        {
+            var assembly = AppDomain.CurrentDomain.Load(nameof(TesteNotifications));
+            services.AddMediatR(assembly);
+
+            services.AddDbContext<ProjectContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("MyConnection")));
+
+            services.AddAutoMapper(typeof(AutoMapperConfiguration));
+
+            services.AddScoped<AlunoRepository, AlunoRepositoryImp>();
+            services.AddScoped<ErrorRepository, ErrorRepositoryImp>();
+            services.AddScoped<QueryRepository, QueryRepositoryImp>();
         }
     }
 }
