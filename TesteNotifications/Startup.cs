@@ -11,7 +11,7 @@ using System;
 using TesteNotifications.Application.AutoMapper;
 using TesteNotifications.Configurations.Filters;
 using TesteNotifications.Domain.Contracts;
-using TesteNotifications.Domain.Global.Notifier.Queues.Error;
+using TesteNotifications.Domain.Global.Structure.Queues.Error;
 using TesteNotifications.Infra.Data;
 using TesteNotifications.Infra.Repositories;
 

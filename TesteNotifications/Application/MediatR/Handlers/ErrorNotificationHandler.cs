@@ -3,8 +3,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using TesteNotifications.Application.MediatR.Notifications;
-using TesteNotifications.Domain.Global.Notifier.DataTypes.Error;
-using TesteNotifications.Domain.Global.Notifier.Queues.Error;
+using TesteNotifications.Domain.Global.Structure.DataTypes.Error;
+using TesteNotifications.Domain.Global.Structure.Queues.Error;
 
 namespace TesteNotifications.Application.MediatR.Handlers
 {

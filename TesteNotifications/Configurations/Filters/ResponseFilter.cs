@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Newtonsoft.Json;
 using System.Net;
 using System.Threading.Tasks;
-using TesteNotifications.Domain.Global.Notifier.Queues.Error;
+using TesteNotifications.Domain.Global.Structure.Queues.Error;
 
 namespace TesteNotifications.Configurations.Filters
 {

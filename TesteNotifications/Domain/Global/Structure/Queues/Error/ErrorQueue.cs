@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using TesteNotifications.Domain.Global.Notifier.DataTypes.Error;
+using TesteNotifications.Domain.Global.Structure.DataTypes.Error;
 
-namespace TesteNotifications.Domain.Global.Notifier.Queues.Error
+namespace TesteNotifications.Domain.Global.Structure.Queues.Error
 {
     public class ErrorQueue : IErrorQueue
     {

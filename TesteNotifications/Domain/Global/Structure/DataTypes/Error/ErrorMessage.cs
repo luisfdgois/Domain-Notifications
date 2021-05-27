@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TesteNotifications.Domain.Global.Notifier.DataTypes.Error
+namespace TesteNotifications.Domain.Global.Structure.DataTypes.Error
 {
     public class ErrorMessage
     {
