@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TesteNotifications.Application.Helpers
+namespace TesteNotifications.Domain.Helpers
 {
     public class PaginatedList<T> : List<T>
         where T : class
@@ -15,7 +15,7 @@ namespace TesteNotifications.Application.Helpers
             PageIndex = pageIndex;
             TotalPages = (int)Math.Ceiling(count / (double)pageSize);
 
-            this.AddRange(items);
+            AddRange(items);
         }
 
         public PaginatedList() { }
@@ -24,7 +24,7 @@ namespace TesteNotifications.Application.Helpers
         {
             get
             {
-                return (PageIndex > 1);
+                return PageIndex > 1;
             }
         }
 
@@ -32,7 +32,7 @@ namespace TesteNotifications.Application.Helpers
         {
             get
             {
-                return (PageIndex < TotalPages);
+                return PageIndex < TotalPages;
             }
         }
 

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TesteNotifications.Domain.Entities;
+using TesteNotifications.Domain.Models.Entities;
 
 namespace TesteNotifications.Infra.Data
 {
@@ -8,11 +8,6 @@ namespace TesteNotifications.Infra.Data
         public ProjectContext(DbContextOptions<ProjectContext> dbContext) : base(dbContext) { }
 
         public DbSet<Aluno> Alunos { get; set; }
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\luisz\\OneDrive\\Documentos\\Domain-Notifications\\DbTesteNotifications.mdf;Integrated Security=True;Connect Timeout=30");
-        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -1,14 +1,14 @@
 ﻿using TesteNotifications.Domain.Contracts;
-using TesteNotifications.Domain.Entities;
+using TesteNotifications.Domain.Models.Entities;
 using TesteNotifications.Infra.Data;
 
 namespace TesteNotifications.Infra.Repositories
 {
-    public class AlunoRepositoryImp : AlunoRepository
+    public class AlunoRepository : IAlunoRepository
     {
         private readonly ProjectContext _context;
 
-        public AlunoRepositoryImp(ProjectContext context)
+        public AlunoRepository(ProjectContext context)
         {
             _context = context;
         }

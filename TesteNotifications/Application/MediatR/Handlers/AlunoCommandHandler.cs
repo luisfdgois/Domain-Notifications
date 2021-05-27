@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using TesteNotifications.Application.MediatR.Commands;
 using TesteNotifications.Application.MediatR.Notifications;
 using TesteNotifications.Domain.Contracts;
-using TesteNotifications.Domain.Entities;
+using TesteNotifications.Domain.Models.Entities;
 
 namespace TesteNotifications.Application.MediatR.Handlers
 {
@@ -13,9 +13,9 @@ namespace TesteNotifications.Application.MediatR.Handlers
     {
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;
-        private readonly AlunoRepository _alunoRepository;
+        private readonly IAlunoRepository _alunoRepository;
 
-        public AlunoCommandHandler(IMediator mediator, IMapper mapper, AlunoRepository alunoRepository)
+        public AlunoCommandHandler(IMediator mediator, IMapper mapper, IAlunoRepository alunoRepository)
         {
             _mediator = mediator;
             _mapper = mapper;

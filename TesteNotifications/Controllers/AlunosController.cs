@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using TesteNotifications.Application.Contracts;
 using TesteNotifications.Application.MediatR.Commands;
+using TesteNotifications.Domain.Contracts;
 using TesteNotifications.Models.DTOs;
 
 namespace TesteNotifications.Controllers
@@ -13,9 +13,9 @@ namespace TesteNotifications.Controllers
     {
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;
-        private readonly QueryRepository _queryRepository;
+        private readonly IAlunoQueryRepository _queryRepository;
 
-        public AlunosController(IMediator mediator, IMapper mapper, QueryRepository queryRepository)
+        public AlunosController(IMediator mediator, IMapper mapper, IAlunoQueryRepository queryRepository)
         {
             _mediator = mediator;
             _mapper = mapper;

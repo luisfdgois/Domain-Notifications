@@ -8,11 +8,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
-using TesteNotifications.Application.Concrets;
-using TesteNotifications.Application.Contracts;
-using TesteNotifications.AutoMapper;
+using TesteNotifications.Application.AutoMapper;
 using TesteNotifications.Configurations.Filters;
 using TesteNotifications.Domain.Contracts;
+using TesteNotifications.Domain.Global.Notifier.Queues.Error;
 using TesteNotifications.Infra.Data;
 using TesteNotifications.Infra.Repositories;
 
@@ -87,9 +86,10 @@ namespace TesteNotifications
 
             services.AddAutoMapper(typeof(AutoMapperConfiguration));
 
-            services.AddScoped<AlunoRepository, AlunoRepositoryImp>();
-            services.AddScoped<ErrorRepository, ErrorRepositoryImp>();
-            services.AddScoped<QueryRepository, QueryRepositoryImp>();
+            services.AddScoped<IErrorQueue, ErrorQueue>();
+
+            services.AddScoped<IAlunoRepository, AlunoRepository>();
+            services.AddScoped<IAlunoQueryRepository, AlunoQueryRepository>();
         }
     }
 }

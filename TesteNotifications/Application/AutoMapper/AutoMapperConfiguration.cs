@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using TesteNotifications.Application.MediatR.Commands;
-using TesteNotifications.Domain.Entities;
+using TesteNotifications.Domain.Models.Entities;
 using TesteNotifications.Models.DTOs;
 
-namespace TesteNotifications.AutoMapper
+namespace TesteNotifications.Application.AutoMapper
 {
     public class AutoMapperConfiguration : Profile
     {

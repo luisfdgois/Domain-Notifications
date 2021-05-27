@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace TesteNotifications.Domain.Entities
+namespace TesteNotifications.Domain.Models.Entities
 {
     public class Aluno
     {
